@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.himalay</groupId>
+	<artifactId>jipstack</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<gmavenVersion>1.4</gmavenVersion>
+		<gmavenProviderSelection>2.0</gmavenProviderSelection>
+		<groovyVersion>2.3.6</groovyVersion>
+	</properties>
+	<repositories>
+		<repository>
+			<id>himalayanRepo</id>
+			<url>https://raw.githubusercontent.com/krishnact/mvnrepo/master/snapshots/</url>
+			<!-- url>https://github.com/krishnact/mvnrepo/raw/master/</url -->
+		</repository>
+	</repositories>
+
+	<build>
+		<sourceDirectory>src/main</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+
+					<libs>
+						<lib>${java.home}/lib/rt.jar</lib>
+					</libs>
+					<proguardInclude>${project.basedir}/proguard.conf</proguardInclude>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/jnodeSupport</source>
+								<source>src/bareminimumKraken</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+		<pluginManagement>
+			<plugins>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.himalay</groupId>
+			<artifactId>jip-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.himalay</groupId>
+			<artifactId>barekraken</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+
+	</dependencies>
+</project>
